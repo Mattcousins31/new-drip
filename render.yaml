@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: new-drip-app
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python3 server_with_api.py
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: PYTHON_VERSION
+        value: 3.11.0

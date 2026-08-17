@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Drip — Modern High-Yield Wealth & Automated Cash Engine</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- Luxury Acorns-Inspired Top Navbar with Categorized Dropdowns -->
+    <header class="navbar">
+      <div class="nav-left">
+        <div class="brand" onclick="switchNavTab('portfolio')">
+          <div class="brand-icon">
+            <img src="logo.png" alt="New Drip Logo" class="brand-logo-img">
+          </div>
+          <div class="brand-name">New Drip</div>
+        </div>
+        
+        <nav class="nav-menu-group">
+          <!-- Dropdown 1: Cash Flow -->
+          <div class="nav-dropdown" id="dropdown-cashflow">
+            <button class="nav-dropdown-toggle active" id="dropdown-toggle-cashflow">
+              <span>Cash Flow</span>
+              <span class="dropdown-chevron">▼</span>
+            </button>
+            <div class="nav-dropdown-menu">
+              <button class="nav-dropdown-item active" id="tab-btn-portfolio" onclick="switchNavTab('portfolio')">
+                <div class="dropdown-item-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                </div>
+                <div class="dropdown-item-text">
+                  <span class="item-title">Portfolio & Holdings</span>
+                  <span class="item-desc">Real-time balances, positions & DRIP compounding</span>
+                </div>
+              </button>
+              <button class="nav-dropdown-item" id="tab-btn-expenses" onclick="switchNavTab('expenses')">
+                <div class="dropdown-item-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+                <div class="dropdown-item-text">
+                  <span class="item-title">Bill Freedom Matcher</span>
+                  <span class="item-desc">Live dividend payout to living expense matcher</span>
+                </div>
+              </button>
+              <button class="nav-dropdown-item" id="tab-btn-calendar" onclick="switchNavTab('calendar')">
+                <div class="dropdown-item-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+                </div>
+                <div class="dropdown-item-text">
+                  <span class="item-title">Payday Schedule</span>
+                  <span class="item-desc">Chronological weekly/monthly incoming cash distributions</span>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Dropdown 2: Intelligence -->
+          <div class="nav-dropdown" id="dropdown-intel">
+            <button class="nav-dropdown-toggle" id="dropdown-toggle-intel">
+              <span>Intelligence</span>
+              <span class="dropdown-chevron">▼</span>
+            </button>
+            <div class="nav-dropdown-menu">
+              <button class="nav-dropdown-item" id="tab-btn-yieldhistory" onclick="switchNavTab('yieldhistory')">
+                <div class="dropdown-item-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/><path d="M15 3v18"/></svg>
+                </div>
+                <div class="dropdown-item-text">
+                  <span class="item-title">5-Yr Yield Heatmaps</span>
+                  <span class="item-desc">Historical distribution matrices (2022–2026)</span>
+                </div>
+              </button>
+              <button class="nav-dropdown-item" id="tab-btn-copilot" onclick="switchNavTab('copilot')">
+                <div class="dropdown-item-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a8 8 0 0 0-8 8c0 3.36 2.08 6.23 5 7.37V20a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2.63c2.92-1.14 5-4.01 5-7.37a8 8 0 0 0-8-8z"/><line x1="12" x2="12" y1="9" y2="13"/></svg>
+                </div>
+                <div class="dropdown-item-text">
+                  <span class="item-title">Private AI Strategist</span>
+                  <span class="item-desc">100% confidential portfolio analysis & income engineering</span>
+                </div>
+              </button>
+              <button class="nav-dropdown-item" id="tab-btn-backtester" onclick="switchNavTab('backtester')">
+                <div class="dropdown-item-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+                </div>
+                <div class="dropdown-item-text">
+                  <span class="item-title">5-Yr NAV Backtester</span>
+                  <span class="item-desc">Total return vs. yield decay & house money timeline</span>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Dropdown 3: Wealth & Taxes -->
+          <div class="nav-dropdown" id="dropdown-wealth">
+            <button class="nav-dropdown-toggle" id="dropdown-toggle-wealth">
+              <span>Wealth & Taxes</span>
+              <span class="dropdown-chevron">▼</span>
+            </button>
+            <div class="nav-dropdown-menu">
+              <button class="nav-dropdown-item" id="tab-btn-tax1099" onclick="switchNavTab('tax1099')">
+                <div class="dropdown-item-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/></svg>
+                </div>
+                <div class="dropdown-item-text">
+                  <span class="item-title">Form 1099-DIV Simulator</span>
+                  <span class="item-desc">Box 1a, 1b, 2a, 3 (ROC) tax projections</span>
+                </div>
+              </button>
+              <button class="nav-dropdown-item" id="tab-btn-optimizer" onclick="switchNavTab('optimizer')">
+                <div class="dropdown-item-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <div class="dropdown-item-text">
+                  <span class="item-title">Asset Location & Fee Audit</span>
+                  <span class="item-desc">Roth IRA vs. Taxable shields & brokerage fee audit</span>
+                </div>
+              </button>
+              <button class="nav-dropdown-item" id="tab-btn-milestones" onclick="switchNavTab('milestones')">
+                <div class="dropdown-item-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>
+                </div>
+                <div class="dropdown-item-text">
+                  <span class="item-title">Milestone Roadmaps</span>
+                  <span class="item-desc">Compound velocity targets ($100k, $1M, $5M, $10M)</span>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Direct Pill 4: Curated Models -->
+          <button class="nav-direct-pill" id="tab-btn-strategies" onclick="switchNavTab('strategies')">
+            <span>Curated Models</span>
+          </button>
+        </nav>
+      </div>
+
+      <div class="nav-right">
+        <!-- Light / Dark Theme Switcher -->
+        <button class="btn-theme-toggle" id="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light / Dark Mode">
+          <span id="theme-icon">
+            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" x2="12" y1="1" y2="3"/><line x1="12" x2="12" y1="21" y2="23"/><line x1="4.22" x2="5.64" y1="4.22" y2="5.64"/><line x1="18.36" x2="19.78" y1="18.36" y2="19.78"/><line x1="1" x2="3" y1="12" y2="12"/><line x1="21" x2="23" y1="12" y2="12"/><line x1="4.22" x2="5.64" y1="19.78" y2="18.36"/><line x1="18.36" x2="19.78" y1="5.64" y2="4.22"/></svg>
+          </span>
+        </button>
+
+        <button class="btn-auth-user" id="nav-auth-btn" onclick="openAuthModal()">
+          <span id="nav-auth-icon" style="display:flex; align-items:center;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </span>
+          <span id="nav-auth-label">Sign In</span>
+        </button>
+        <button class="btn-link-broker" onclick="openLinkBrokerageModal()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          <span>Link Brokerage</span>
+        </button>
+        <button class="btn-export" onclick="openUpgradeModal()" style="background: linear-gradient(135deg, rgba(121, 82, 252, 0.2), rgba(0, 200, 5, 0.2)); border-color: var(--pub-purple); color: var(--text-primary);">
+          <span>Upgrade Pro</span>
+        </button>
+        <button class="btn-export" onclick="exportPortfolioCSV()" title="Export Portfolio to CSV">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+          <span>Export</span>
+        </button>
+        <div class="live-badge">
+          <span class="pulse-dot"></span>
+          <span>LIVE MARKET FEED</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main 2-Column Robinhood Layout -->
+    <div class="main-layout">
+      
+      <!-- ================= LEFT COLUMN: MAIN CONTENT FEED ================= -->
+      <div class="main-feed">
+
+        <!-- ================= VISION ARC CINEMATIC PRODUCT STAGE ================= -->
+        <div class="cinematic-hero-stage" id="cinematic-stage" onmouseenter="pauseStageCycle()" onmouseleave="resumeStageCycle()">
+          <div class="stage-lens-flare"></div>
+          <div class="stage-ambient-aura"></div>
+
+          <div class="stage-hero-grid">
+            <!-- Left: Index, Typography & Technical Specs -->
+            <div class="stage-text-column">
+              <div>
+                <div class="stage-index-row">
+                  <div class="stage-index-num" id="stage-index-num">01</div>
+                  <div class="stage-category-label">
+                    <span id="stage-category-text">CASH VELOCITY</span>
+                    <div class="stage-category-line"></div>
+                  </div>
+                </div>
+
+                <div class="stage-main-title" id="stage-title">
+                  Autonomous Compounding Engine
+                </div>
+
+                <div class="stage-main-desc" id="stage-desc">
+                  Reinvest weekly cash distributions into high-velocity 0DTE & covered-call options strategies (QDTE, QQQY, BTCI). Watch your passive dividend snowball multiply automatically.
+                </div>
+              </div>
+
+              <!-- Technical Spec Badges (Vision Arc Style) -->
+              <div class="stage-specs-grid" id="stage-specs-container">
+                <div class="stage-spec-item">
+                  <div class="stage-spec-lbl">Target Yield</div>
+                  <div class="stage-spec-val" style="color: var(--rh-green);" id="spec-1-val">26.6% APY</div>
+                </div>
+                <div class="stage-spec-item">
+                  <div class="stage-spec-lbl">Engine</div>
+                  <div class="stage-spec-val" id="spec-2-val">0DTE DRIP</div>
+                </div>
+                <div class="stage-spec-item">
+                  <div class="stage-spec-lbl">Payout Velocity</div>
+                  <div class="stage-spec-val" style="color: #60a5fa;" id="spec-3-val">Weekly Cash</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: 3D Media Canvas & Floating HUD -->
+            <div class="stage-media-canvas">
+              <img src="compounding_hero.jpg" alt="Cinematic Stage Visual" id="stage-media-img" class="stage-media-img">
+              <div class="stage-hud-overlay">
+                <div class="stage-top-pill" id="stage-top-badge">
+                  <span class="pulse-dot"></span>
+                  <span id="stage-badge-text">Autonomous DRIP Engine Active</span>
+                </div>
+                <div class="stage-bottom-hud-row">
+                  <div class="stage-hud-stat">
+                    <div class="stage-hud-stat-lbl">Dividends Received</div>
+                    <div class="stage-hud-stat-val" style="color: var(--rh-green);" id="stage-hud-val-1">+$84,520</div>
+                  </div>
+                  <div class="stage-hud-stat">
+                    <div class="stage-hud-stat-lbl">Reinvestment Rate</div>
+                    <div class="stage-hud-stat-val" style="color: #60a5fa;" id="stage-hud-val-2">100% DRIP</div>
+                  </div>
+                  <div class="stage-hud-stat">
+                    <div class="stage-hud-stat-lbl">Portfolio Value</div>
+                    <div class="stage-hud-stat-val" style="color: #c4b5fd;" id="stage-hud-val-3">$2,145,000</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Chapter Scrubber Bar -->
+          <div class="stage-chapter-scrubber">
+            <div class="stage-chapter-tab active" id="stage-tab-0" onclick="selectStageChapter(0)">
+              <div class="stage-chapter-prog"><div class="stage-chapter-fill" id="stage-fill-0"></div></div>
+              <div class="stage-chapter-tab-text">
+                <span class="stage-tab-num">01</span>
+                <span class="stage-tab-title">Compounding</span>
+              </div>
+            </div>
+
+            <div class="stage-chapter-tab" id="stage-tab-1" onclick="selectStageChapter(1)">
+              <div class="stage-chapter-prog"><div class="stage-chapter-fill" id="stage-fill-1"></div></div>
+              <div class="stage-chapter-tab-text">
+                <span class="stage-tab-num">02</span>
+                <span class="stage-tab-title">Tax Vault</span>
+              </div>
+            </div>
+
+            <div class="stage-chapter-tab" id="stage-tab-2" onclick="selectStageChapter(2)">
+              <div class="stage-chapter-prog"><div class="stage-chapter-fill" id="stage-fill-2"></div></div>
+              <div class="stage-chapter-tab-text">
+                <span class="stage-tab-num">03</span>
+                <span class="stage-tab-title">Living Bills</span>
+              </div>
+            </div>
+
+            <div class="stage-chapter-tab" id="stage-tab-3" onclick="selectStageChapter(3)">
+              <div class="stage-chapter-prog"><div class="stage-chapter-fill" id="stage-fill-3"></div></div>
+              <div class="stage-chapter-tab-text">
+                <span class="stage-tab-num">04</span>
+                <span class="stage-tab-title">Broker Sync</span>
+              </div>
+            </div>
+
+            <div class="stage-ctrl-buttons">
+              <button class="btn-stage-ctrl" onclick="prevStageChapter()" title="Previous Chapter">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+              </button>
+              <button class="btn-stage-ctrl" id="btn-stage-play" onclick="toggleStagePlay()" title="Pause / Play Stage">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" id="icon-stage-play"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              </button>
+              <button class="btn-stage-ctrl" onclick="nextStageChapter()" title="Next Chapter">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= LUXURY PRO METRICS HUD (CLICKABLE INTERACTIVE TABS) ================= -->
+        <div class="portfolio-hero-hud">
+          <div class="hero-hud-card active" id="hud-card-portfolio" onclick="switchNavTab('portfolio')" title="View Portfolio Holdings & Compounding Chart">
+            <div class="hud-card-top">
+              <span class="hud-card-label">Total Portfolio</span>
+              <span class="pulse-dot"></span>
+            </div>
+            <div class="hud-card-val" id="hero-total-val">$2,978.70</div>
+            <div class="hud-card-sub" style="color: var(--rh-green);" id="hero-cash-rate">+$66.02 / mo</div>
+          </div>
+
+          <div class="hero-hud-card" id="hud-card-yield" onclick="switchNavTab('yieldhistory')" title="View 5-Year Dividend History & Yield Matrix">
+            <div class="hud-card-top">
+              <span class="hud-card-label">Blended Yield</span>
+              <span class="tag tag-purple">Weekly DRIP</span>
+            </div>
+            <div class="hud-card-val" id="hero-yield-rate">26.60%</div>
+            <div class="hud-card-sub" id="hero-weekly-payout">+$15.24 / week</div>
+          </div>
+
+          <div class="hero-hud-card" id="hud-card-tax" onclick="switchNavTab('optimizer')" title="View Tax Location & Multi-Account Optimizer">
+            <div class="hud-card-top">
+              <span class="hud-card-label">Tax Drag Rate</span>
+              <span class="tag tag-green">0% Roth Drag</span>
+            </div>
+            <div class="hud-card-val" style="color: var(--rh-green);" id="hero-tax-saved">0.0%</div>
+            <div class="hud-card-sub">+$190.14/yr Shielded</div>
+          </div>
+
+          <div class="hero-hud-card" id="hud-card-expenses" onclick="switchNavTab('expenses')" title="View Living Expense Freedom Engine">
+            <div class="hud-card-top">
+              <span class="hud-card-label">Expense Freedom</span>
+              <span class="tag tag-blue">Bill Matcher</span>
+            </div>
+            <div class="hud-card-val" style="color: #60a5fa;" id="hero-freedom-pct">52.8%</div>
+            <div class="hud-card-sub" id="hero-freedom-sub">2 of 4 Core Bills Paid</div>
+          </div>
+        </div>
+
+        <!-- TAB 1: PORTFOLIO & CASH FLOW -->
+        <div class="tab-view active" id="view-portfolio">
+
+          <!-- Interactive Performance Chart Section -->
+          <div class="chart-card">
+            <div class="chart-header">
+              <div style="font-size: 13px; font-weight: 700; color: var(--text-secondary);">COMPOUNDING CASH & DRIP TRAJECTORY</div>
+              <div class="time-range-pills">
+                <button class="time-pill" onclick="setChartRange('1M')">1M</button>
+                <button class="time-pill" onclick="setChartRange('3M')">3M</button>
+                <button class="time-pill" onclick="setChartRange('1Y')">1Y</button>
+                <button class="time-pill active" onclick="setChartRange('ALL')">5Y ALL</button>
+              </div>
+            </div>
+            <div class="chart-viewport">
+              <canvas id="heroChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Active Holdings List (Robinhood Style with Inline Share Editing) -->
+          <div class="modern-card">
+            <div class="card-title-row">
+              <div class="card-heading">
+                <span>Active Positions</span>
+              </div>
+              <span class="tag tag-green" id="holdings-count-badge">6 Assets Synced</span>
+            </div>
+            <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
+              Tip: Click <strong>Edit</strong> next to any share count to quickly update holdings without deleting.
+            </div>
+            <div class="holdings-list" id="holdings-list-container">
+              <!-- Dynamically Populated with Inline Share Editing -->
+            </div>
+          </div>
+
+          <!-- Weekly Distribution Schedule Feed -->
+          <div class="modern-card">
+            <div class="card-title-row">
+              <div class="card-heading">
+                <span>Upcoming Distribution Schedule</span>
+              </div>
+              <span class="tag tag-blue">Automated DRIP Active</span>
+            </div>
+            <div class="holdings-list" id="schedule-list-container">
+              <!-- Dynamically Populated -->
+            </div>
+          </div>
+
+        </div>
+
+        <!-- TAB 2: PRIVATE AI WEALTH STRATEGIST -->
+        <div class="tab-view" id="view-copilot" style="display: none;">
+          <div class="modern-card" style="padding: 0; overflow: hidden;">
+            <div style="padding: 18px 22px; border-bottom: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <div class="card-heading" style="margin-bottom: 2px;">
+                  <span>Private AI Wealth & Income Strategist</span>
+                </div>
+                <div style="font-size: 12px; color: var(--text-secondary);">
+                  100% Confidential & Encrypted • Private intelligence for ETF analysis, dividend growth, and tax shielding.
+                </div>
+              </div>
+              <span class="tag tag-green">Encrypted & Private</span>
+            </div>
+
+            <!-- Quick Prompts Row -->
+            <div class="quick-prompts-row">
+              <button class="quick-chip" onclick="askCopilotQuick('Audit my portfolio for yield traps & NAV decay')">Audit Portfolio</button>
+              <button class="quick-chip" onclick="askCopilotQuick('How can I safely hit $1,000/mo in dividends?')">Hit $1,000/Mo Goal</button>
+              <button class="quick-chip" onclick="askCopilotQuick('Explain how Return of Capital (ROC) & Section 1256 shield taxes')">ROC & Tax Shelter</button>
+              <button class="quick-chip" onclick="askCopilotQuick('Top 3 Monthly-Paying REITs for growth and income')">Top Monthly REITs</button>
+              <button class="quick-chip" onclick="askCopilotQuick('Compare QQQI vs QDTE for weekly cash flow')">QQQI vs QDTE</button>
+            </div>
+
+            <!-- Chat Container -->
+            <div class="copilot-container">
+              <div class="copilot-messages" id="copilot-messages-container">
+                <div class="chat-msg assistant">
+                  <div class="chat-avatar ai-avatar">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a8 8 0 0 0-8 8c0 3.36 2.08 6.23 5 7.37V20a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2.63c2.92-1.14 5-4.01 5-7.37a8 8 0 0 0-8-8z"/></svg>
+                  </div>
+                  <div class="chat-bubble">
+                    <p>Hello! I am your <strong>Private AI Wealth Strategist</strong>. I have real-time access to your portfolio holdings and live financial data.</p>
+                    <p>This is a <strong>strictly confidential 1-on-1 advisory session</strong>. You can ask me anything about:</p>
+                    <ul>
+                      <li>Analyzing high-yield weekly 0DTE funds (QDTE, QQQY, WDTE) vs. core dividend aristocrats</li>
+                      <li>Optimizing asset location across Roth IRA and Taxable accounts to eliminate tax drag</li>
+                      <li>Structuring passive cash flow to match your living expenses and achieve early retirement</li>
+                    </ul>
+                    <p><em>Ask a question below or click any quick analysis chip to start!</em></p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Chat Input Row -->
+              <div class="chat-input-row">
+                <input type="text" class="chat-input" id="copilot-user-input" placeholder="Ask any private question about dividend ETFs, REITs, tax optimization, or cash flow..." onkeydown="handleCopilotKeyDown(event)">
+                <button class="btn-send" onclick="sendCopilotMessage()">Ask Strategist</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- TAB: 5-YEAR DIVIDEND HISTORY & YIELD CALENDAR -->
+        <div class="tab-view" id="view-yieldhistory" style="display: none;">
+          
+          <div class="yield-history-header-card">
+            <div>
+              <div style="font-size: 13px; font-weight: 700; color: #c4b5fd; text-transform: uppercase; letter-spacing: 0.05em;">
+                5-Year Dividend History & Yield Matrix
+              </div>
+              <div style="font-size: 20px; font-weight: 800; color: var(--text-primary); margin-top: 4px;" id="yh-title-display">
+                QDTE — Roundhill Innovation-100 0DTE Covered Call ETF
+              </div>
+              <div style="font-size: 13px; color: var(--text-secondary); margin-top: 2px;" id="yh-subtitle-display">
+                Live distribution breakdown from 2022 to 2026 across every weekly & monthly payout event.
+              </div>
+            </div>
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <input type="text" class="search-input" id="yh-custom-search" placeholder="Enter Ticker (e.g. WDTE, SCHD, O)..." style="width: 180px; padding: 8px 12px; font-size: 13px;" onkeydown="if(event.key==='Enter') searchCustomYieldHistory()">
+              <button class="btn-primary" onclick="searchCustomYieldHistory()" style="width: auto; padding: 8px 16px; font-size: 13px;">
+                Search
+              </button>
+            </div>
+          </div>
+
+          <!-- Fast Ticker Selection Pills -->
+          <div class="yield-history-selector-chips">
+            <button class="yield-history-chip active" id="yh-chip-QDTE" onclick="selectYieldHistoryTicker('QDTE')">QDTE (0DTE Weekly)</button>
+            <button class="yield-history-chip" id="yh-chip-QQQY" onclick="selectYieldHistoryTicker('QQQY')">QQQY (Weekly)</button>
+            <button class="yield-history-chip" id="yh-chip-WDTE" onclick="selectYieldHistoryTicker('WDTE')">WDTE (S&P Weekly)</button>
+            <button class="yield-history-chip" id="yh-chip-GOF" onclick="selectYieldHistoryTicker('GOF')">GOF (Monthly CEF)</button>
+            <button class="yield-history-chip" id="yh-chip-BTCI" onclick="selectYieldHistoryTicker('BTCI')">BTCI (Bitcoin Income)</button>
+            <button class="yield-history-chip" id="yh-chip-QQQI" onclick="selectYieldHistoryTicker('QQQI')">QQQI (NEOS Nasdaq)</button>
+            <button class="yield-history-chip" id="yh-chip-SCHD" onclick="selectYieldHistoryTicker('SCHD')">SCHD (Dividend Aristocrat)</button>
+            <button class="yield-history-chip" id="yh-chip-O" onclick="selectYieldHistoryTicker('O')">O (Monthly REIT)</button>
+            <button class="yield-history-chip" id="yh-chip-VOO" onclick="selectYieldHistoryTicker('VOO')">VOO (S&P 500 Core)</button>
+            <button class="yield-history-chip" id="yh-chip-YMAX" onclick="selectYieldHistoryTicker('YMAX')">YMAX (YieldMax Weekly)</button>
+          </div>
+
+          <!-- 4 Executive Metric Cards -->
+          <div class="calendar-summary-cards">
+            <div class="cal-card">
+              <div style="font-size: 11px; font-weight: 700; color: var(--text-muted);">5-YR TOTAL CASH PAID / SHARE</div>
+              <div class="cal-card-val" id="yh-card-total-cash">$33.62</div>
+              <div style="font-size: 11px; color: var(--rh-green);" id="yh-card-total-cash-sub">Across 125 payouts</div>
+            </div>
+            <div class="cal-card">
+              <div style="font-size: 11px; font-weight: 700; color: var(--text-muted);">CUMULATIVE PAYBACK ON CAPITAL</div>
+              <div class="cal-card-val" style="color: #c4b5fd;" id="yh-card-payback-pct">112.7%</div>
+              <div style="font-size: 11px; color: var(--text-secondary);" id="yh-card-payback-sub">vs. Current Price ($29.83)</div>
+            </div>
+            <div class="cal-card">
+              <div style="font-size: 11px; font-weight: 700; color: var(--text-muted);">"HOUSE MONEY" MILESTONE</div>
+              <div class="cal-card-val" style="color: #60a5fa;" id="yh-card-house-money">ACHIEVED 🎉</div>
+              <div style="font-size: 11px; color: var(--text-secondary);" id="yh-card-house-sub">100% Initial Capital Returned</div>
+            </div>
+            <div class="cal-card">
+              <div style="font-size: 11px; font-weight: 700; color: var(--text-muted);">CURRENT ANNUALIZED YIELD</div>
+              <div class="cal-card-val" id="yh-card-yield">36.26%</div>
+              <div style="font-size: 11px; color: #f59e0b;" id="yh-card-freq">Weekly Distribution</div>
+            </div>
+          </div>
+
+          <!-- 5-Year Month-by-Month Heatmap Calendar Table -->
+          <div class="modern-card">
+            <div class="card-title-row">
+              <div class="card-heading">
+                <span>5-Year Monthly Distribution Heatmap Matrix (2022 - 2026)</span>
+              </div>
+              <span class="tag tag-purple" id="yh-matrix-badge">12 Months x 5 Years</span>
+            </div>
+            <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 12px;">
+              Each cell displays the total cash dividend distributed in that month. Green highlights indicate above-average income months and special year-end distributions.
+            </p>
+
+            <div class="yield-heatmap-table-wrap">
+              <table class="yield-heatmap-table" id="yh-heatmap-table">
+                <thead>
+                  <tr>
+                    <th>Year</th>
+                    <th>Jan</th>
+                    <th>Feb</th>
+                    <th>Mar</th>
+                    <th>Apr</th>
+                    <th>May</th>
+                    <th>Jun</th>
+                    <th>Jul</th>
+                    <th>Aug</th>
+                    <th>Sep</th>
+                    <th>Oct</th>
+                    <th>Nov</th>
+                    <th>Dec</th>
+                    <th style="color: #ffffff; background: #252b3b;">Annual Total</th>
+                    <th style="color: var(--rh-green); background: #252b3b;">Yield</th>
+                  </tr>
+                </thead>
+                <tbody id="yh-heatmap-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Annual Payout Comparison Bar Chart -->
+          <div class="modern-card">
+            <div class="card-title-row">
+              <div class="card-heading">
+                <span>Annual Dividend Growth & Payout Comparison</span>
+              </div>
+              <span class="tag tag-green">Year-over-Year Trajectory</span>
+            </div>
+            <div class="chart-viewport" style="height: 240px;">
+              <canvas id="yieldHistoryChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Recent Distribution Log -->
+          <div class="modern-card">
+            <div class="card-title-row">
+              <div class="card-heading">
+                <span>Recent Individual Distribution Events</span>
+              </div>
+              <span class="tag tag-blue">Last 25 Distributions</span>
+            </div>
+            <div class="recent-dists-log" id="yh-recent-dists-container"></div>
+          </div>
+
+        </div>
+
+        <!-- TAB 3: FEATURE 1 — EDITABLE BILL MATCHER & FREEDOM MATRIX -->
+        <div class="tab-view" id="view-expenses" style="display: none;">
+          <div class="modern-card">
+            <div class="card-title-row">
+              <div class="card-heading">
+                <span>Editable Bill Matcher & Passive Living Expense Matrix</span>
+              </div>
+              <span class="tag tag-green" id="expense-total-covered-badge">3 Bills 100% Covered</span>
+            </div>
+            
+            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 14px;">
+              Directly edit monthly amounts or add your own custom expenses. Watch your live dividend cash flow pay them off in real time!
+            </p>
+
+            <div class="expense-grid" id="expense-matrix-container">
+              <!-- Dynamically Populated with Inline Editable Inputs -->
+            </div>
+
+            <!-- Add Custom Bill Bar -->
+            <div class="add-bill-card">
+              <input type="text" class="add-bill-input" id="new-bill-name" placeholder="Expense Category (e.g. Gym, Car Insurance)" style="flex: 2; min-width: 150px;">
+              <input type="number" step="any" class="add-bill-input" id="new-bill-cost" placeholder="Monthly Cost ($)" style="flex: 1; min-width: 110px;">
+              <button class="btn-primary" onclick="addCustomBill()" style="width: auto; padding: 8px 18px; font-size: 13px;">
+                Add Expense
+              </button>
+            </div>
+
+            <div style="background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 16px; margin-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+              <div>
+                <div style="font-size: 13px; font-weight: 700; color: #c4b5fd;">Total Monthly Living Expenses</div>
+                <div style="font-size: 22px; font-weight: 800; font-family: var(--font-mono); color: var(--text-primary);" id="expense-grand-total">$3,400.00 / mo</div>
+              </div>
+              <div style="text-align: right;">
+                <div style="font-size: 12px; color: var(--text-secondary);">Overall Freedom Coverage</div>
+                <div style="font-size: 22px; font-weight: 800; font-family: var(--font-mono); color: var(--rh-green);" id="expense-grand-pct">1.9% Funded</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- TAB 4: FEATURE 4 — PORTFOLIO-ONLY REAL-TIME PAYDAY CALENDAR -->
+        <div class="tab-view" id="view-calendar" style="display: none;">
+          <div class="modern-card">
+            <div class="card-title-row">
+              <div class="card-heading">
+                <span>Live Portfolio Payday Schedule</span>
+              </div>
+              <span class="tag tag-purple">Portfolio-Driven</span>
+            </div>
+            
+            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px;">
+              This calendar strictly displays scheduled distribution events for the exact assets you currently hold in your portfolio.
+            </p>
+
+            <!-- Calendar Summary Top Stats -->
+            <div class="calendar-summary-cards">
+              <div class="cal-card">
+                <div style="font-size: 11px; font-weight: 700; color: var(--text-muted);">INCOMING THIS WEEK</div>
+                <div class="cal-card-val" id="cal-this-week">+$10.20</div>
+                <div style="font-size: 11px; color: #c4b5fd;" id="cal-this-week-sub">Weekly Distributions</div>
+              </div>
+              <div class="cal-card">
+                <div style="font-size: 11px; font-weight: 700; color: var(--text-muted);">INCOMING THIS MONTH</div>
+                <div class="cal-card-val" id="cal-this-month">+$66.02</div>
+                <div style="font-size: 11px; color: var(--text-secondary);" id="cal-this-month-sub">Across active holdings</div>
+              </div>
+              <div class="cal-card">
+                <div style="font-size: 11px; font-weight: 700; color: var(--text-muted);">PROJECTED NEXT MONTH (DRIP)</div>
+                <div class="cal-card-val" id="cal-next-month">+$67.48</div>
+                <div style="font-size: 11px; color: var(--rh-green);" id="cal-next-month-sub">With automatic DRIP</div>
+              </div>
+            </div>
+
+            <!-- Dynamic Payday Timeline (Strictly Portfolio Holdings) -->
+            <div class="payday-timeline" id="payday-timeline-container">
+              <!-- Dynamically Populated with user's actual holdings -->
+            </div>
+
+          </div>
+        </div>
+
+        <!-- TAB 5: CURATED MODEL PORTFOLIOS -->
+        <div class="tab-view" id="view-strategies" style="display: none;">
+          <div class="modern-card">
+            <div class="card-title-row">
+              <div class="card-heading">
+                <span>Curated High-Yield & Growth Model Portfolios</span>
+              </div>
+              <span class="tag tag-purple">1-Click Cloneable</span>
+            </div>
+            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 18px;">
+              Explore battle-tested dividend portfolios curated by quantitative financial researchers. Click <strong>Clone Strategy</strong> to instantly load any model into your active simulator!
+            </p>
+
+            <div class="strategy-grid" id="strategies-grid-container">
+              <!-- Dynamically Populated -->
+            </div>
+
+          </div>
+        </div>
+
+        <!-- TAB 6: FEATURE 5 — 1099-DIV TAX FORM SIMULATOR -->
+        <div class="tab-view" id="view-tax1099" style="display: none;">
+          <div class="modern-card">
+            <div class="card-title-row">
+              <div class="card-heading">
+                <span>Year-End IRS Form 1099-DIV Simulation & Box Breakdown</span>
+              </div>
+              <span class="tag tag-green">Zero-Surprise Tax Planning</span>
+            </div>
+            
+            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px;">
+              Preview your exact year-end tax categorization before filing. See how much of your dividend income is completely tax-sheltered via <strong>Return of Capital (ROC)</strong>, <strong>Section 1256 (60/40)</strong>, and <strong>Roth IRA tax-free distributions</strong>:
+            </p>
+
+            <div class="form-1099-box">
+              <div class="form-1099-header">
+                <div>
+                  <div style="font-size: 16px; font-weight: 800; color: var(--text-primary);">FORM 1099-DIV (SIMULATED PREVIEW)</div>
+                  <div style="font-size: 12px; color: var(--text-secondary);">Dividends and Distributions • Tax Year 2026</div>
+                </div>
+                <span class="tag tag-purple">IRS Compliant Simulation</span>
+              </div>
+
+              <div class="form-1099-grid">
+                <div class="form-box-item">
+                  <div class="form-box-num">Box 1a • Total Ordinary Dividends</div>
+                  <div class="form-box-desc">Taxable ordinary distributions (Non-Roth)</div>
+                  <div class="form-box-amount" id="box-1a-val">$0.00</div>
+                </div>
+
+                <div class="form-box-item">
+                  <div class="form-box-num">Box 1b • Qualified Dividends</div>
+                  <div class="form-box-desc">Eligible for low 0% - 15% capital gains rate (SCHD/VOO)</div>
+                  <div class="form-box-amount" style="color: #60a5fa;" id="box-1b-val">$64.54</div>
+                </div>
+
+                <div class="form-box-item">
+                  <div class="form-box-num">Box 2a • Section 1256 / Cap Gains</div>
+                  <div class="form-box-desc">60% Long-Term / 40% Short-Term option premiums (QQQI/SPYI/BTCI)</div>
+                  <div class="form-box-amount" style="color: #c4b5fd;" id="box-2a-val">$692.68</div>
+                </div>
+
+                <div class="form-box-item">
+                  <div class="form-box-num">Box 3 • Nontaxable Return of Capital (ROC)</div>
+                  <div class="form-box-desc">100% Tax-Free in Current Year (Reduces cost basis)</div>
+                  <div class="form-box-amount" style="color: var(--rh-green);" id="box-3-val">$246.32</div>
+                </div>
+              </div>
+
+              <div style="margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border-subtle); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px;">
+                <div>
+                  <div style="font-size: 11px; color: var(--text-muted);">ROTH & TAX-DEFERRED CASH (NOT ON 1099)</div>
+                  <div style="font-size: 16px; font-weight: 800; color: var(--rh-green);" id="box-roth-shield">+$792.24 / yr (100% Shielded)</div>
+                </div>
+                <div>
+                  <div style="font-size: 11px; color: var(--text-muted);">HSA HEALTHCARE CASH (TRIPLE TAX-FREE)</div>
+                  <div style="font-size: 16px; font-weight: 800; color: #06b6d4;" id="box-hsa-shield">+$0.00 / yr (0% Tax Drag)</div>
+                </div>
+                <div style="text-align: right;">
+                  <div style="font-size: 11px; color: var(--text-muted);">ESTIMATED NET TAX LIABILITY</div>
+                  <div style="font-size: 16px; font-weight: 800; color: #f59e0b;" id="box-est-tax">~$48.17 / year</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- TAB 7: LONG-TERM MILESTONE WEALTH CALCULATOR -->
+        <div class="tab-view" id="view-milestones" style="display: none;">
+          <div class="modern-card">
+            <div class="card-title-row">
+              <div class="card-heading">
+                <span>Long-Term Milestone Wealth & Freedom Roadmap</span>
+              </div>
+              <span class="tag tag-purple">Compound Growth Engine</span>
+            </div>
+            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 18px;">
+              Enter your starting capital, monthly deposit, and annual dividend yield to see exact timelines to reach <strong>$25k, $50k, $100k, $250k, $500k, $1 Million, $5 Million, and $10 Million</strong> along with the passive monthly cash flow generated at each milestone!
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 14px; margin-bottom: 20px;">
+              <div>
+                <label style="font-size: 11px; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 4px;">STARTING CAPITAL ($)</label>
+                <input type="number" class="search-input" id="calc-start-cap" value="2978" oninput="recalculateMilestoneRoadmap()" style="padding: 10px 12px; font-size: 14px;">
+              </div>
+              <div>
+                <label style="font-size: 11px; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 4px;">MONTHLY DEPOSIT ($/MO)</label>
+                <input type="number" class="search-input" id="calc-monthly-dep" value="583" oninput="recalculateMilestoneRoadmap()" style="padding: 10px 12px; font-size: 14px;">
+              </div>
+              <div>
+                <label style="font-size: 11px; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 4px;">ANNUAL YIELD / RETURN (%)</label>
+                <input type="number" step="0.1" class="search-input" id="calc-yield-pct" value="26.6" oninput="recalculateMilestoneRoadmap()" style="padding: 10px 12px; font-size: 14px;">
+              </div>
+            </div>
+
+            <div class="milestone-grid" id="milestone-roadmap-container"></div>
+          </div>
+        </div>
+
+        <!-- TAB 8: DYNAMIC ASSET LOCATION & FEES -->
+        <div class="tab-view" id="view-optimizer" style="display: none;">
+          
+          <div class="location-score-banner">
+            <div>
+              <div style="font-size: 13px; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em;">
+                Live Portfolio Asset Location Health
+              </div>
+              <div style="font-size: 18px; font-weight: 800; color: var(--text-primary); margin-top: 4px;" id="audit-score-title">
+                Optimal Tax-Shield Allocation
+              </div>
+              <div style="font-size: 13px; color: var(--text-secondary); margin-top: 2px;" id="audit-score-subtitle">
+                Shielding high-yield distributions in Roth IRA while sheltering options premiums in Taxable.
+              </div>
+            </div>
+            <div style="text-align: right;">
+              <div class="score-number" id="audit-score-val">98 / 100</div>
+              <span class="tag tag-green" id="audit-tax-saved-badge">Saving ~$174/yr in Tax Drag</span>
+            </div>
+          </div>
+
+          <div id="audit-alerts-container"></div>
+
+          <div class="tax-comparison-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+            
+            <!-- 1. ROTH VAULT -->
+            <div class="tax-box roth">
+              <div class="tax-box-title">
+                <span style="color: var(--rh-green); display: flex; align-items: center; gap: 6px;">
+                  Roth IRA & Roth 401(k)
+                </span>
+                <span class="tag tag-green">0% Tax Rate</span>
+              </div>
+              <div class="tax-stat-row">
+                <span style="color: var(--text-secondary);">Shielded Capital:</span>
+                <strong id="audit-roth-capital">$3,014.55</strong>
+              </div>
+              <div class="tax-stat-row">
+                <span style="color: var(--text-secondary);">Annual Income:</span>
+                <strong style="color: var(--rh-green);" id="audit-roth-income">+$792.24 / yr</strong>
+              </div>
+              <div class="tax-stat-row">
+                <span style="color: var(--text-secondary);">Taxes Owed:</span>
+                <strong style="color: var(--rh-green);">$0.00 (Tax-Free Forever)</strong>
+              </div>
+              <div class="tax-stat-row">
+                <span style="color: var(--text-secondary);">Annual Tax Saved:</span>
+                <strong style="color: #c4b5fd;" id="audit-roth-tax-saved">+$190.14 / yr</strong>
+              </div>
+              <div style="margin-top: 8px; font-size: 11px; color: var(--text-muted);" id="audit-roth-holdings-list">
+                Holdings: QQQY, GOF
+              </div>
+            </div>
+
+            <!-- 2. TRADITIONAL 401(K) / IRA -->
+            <div class="tax-box trad401k">
+              <div class="tax-box-title">
+                <span style="color: #f59e0b; display: flex; align-items: center; gap: 6px;">
+                  Traditional 401(k) / IRA
+                </span>
+                <span class="tag tag-amber">Tax-Deferred</span>
+              </div>
+              <div class="tax-stat-row">
+                <span style="color: var(--text-secondary);">Deferred Capital:</span>
+                <strong id="audit-trad-capital">$0.00</strong>
+              </div>
+              <div class="tax-stat-row">
+                <span style="color: var(--text-secondary);">Annual Income:</span>
+                <strong style="color: #f59e0b;" id="audit-trad-income">+$0.00 / yr</strong>
+              </div>
+              <div class="tax-stat-row">
+                <span style="color: var(--text-secondary);">Current Tax Drag:</span>
+                <strong style="color: var(--rh-green);">$0.00 (100% Compounding)</strong>
+              </div>
+              <div class="tax-stat-row">
+                <span style="color: var(--text-secondary);">Tax-Deferred Benefit:</span>
+                <strong style="color: #f59e0b;" id="audit-trad-tax-saved">+$0.00 / yr</strong>
+              </div>
+              <div style="margin-top: 8px; font-size: 11px; color: var(--text-muted);" id="audit-trad-holdings-list">
+                Holdings: None
+              </div>
+            </div>
+
+            <!-- 3. HSA HEALTHCARE VAULT -->
+            <div class="tax-box hsa">
+              <div class="tax-box-title">
+                <span style="color: #06b6d4; display: flex; align-items: center; gap: 6px;">
+                  HSA (Triple Tax-Free)
+                </span>
+                <span class="tag tag-cyan">Triple Advantage</span>
+              </div>
+              <div class="tax-stat-row">
+                <span style="color: var(--text-secondary);">Healthcare Capital:</span>
+                <strong id="audit-hsa-capital">$0.00</strong>
+              </div>
+              <div class="tax-stat-row">
+                <span style="color: var(--text-secondary);">Annual Income:</span>
+                <strong style="color: #06b6d4;" id="audit-hsa-income">+$0.00 / yr</strong>
+              </div>
+              <div class="tax-stat-row">
+                <span style="color: var(--text-secondary);">Medical Tax Rate:</span>
+                <strong style="color: var(--rh-green);">0% (100% Tax-Free)</strong>
+              </div>
+              <div class="tax-stat-row">
+                <span style="color: var(--text-secondary);">Annual Tax Saved:</span>
+                <strong style="color: #06b6d4;" id="audit-hsa-tax-saved">+$0.00 / yr</strong>
+              </div>
+              <div style="margin-top: 8px; font-size: 11px; color: var(--text-muted);" id="audit-hsa-holdings-list">
+                Holdings: None
+              </div>
+            </div>
+
+            <!-- 4. TAXABLE BROKERAGE -->
+            <div class="tax-box taxable">
+              <div class="tax-box-title">
+                <span style="color: #60a5fa; display: flex; align-items: center; gap: 6px;">
+                  Taxable Brokerage
+                </span>
+                <span class="tag tag-blue">ROC / Sec 1256</span>
+              </div>
+              <div class="tax-stat-row">
+                <span style="color: var(--text-secondary);">Taxable Capital:</span>
+                <strong id="audit-taxable-capital">$8,085.35</strong>
+              </div>
+              <div class="tax-stat-row">
+                <span style="color: var(--text-secondary);">Annual Income:</span>
+                <strong id="audit-taxable-income">+$1,003.54 / yr</strong>
+              </div>
+              <div class="tax-stat-row">
+                <span style="color: var(--text-secondary);">Effective Tax Drag:</span>
+                <strong style="color: #60a5fa;" id="audit-taxable-eff-rate">~4.8% (ROC Sheltered)</strong>
+              </div>
+              <div class="tax-stat-row">
+                <span style="color: var(--text-secondary);">Est. Net Tax Drag:</span>
+                <strong style="color: #f59e0b;" id="audit-taxable-tax-drag">-$48.17 / yr</strong>
+              </div>
+              <div style="margin-top: 8px; font-size: 11px; color: var(--text-muted);" id="audit-taxable-holdings-list">
+                Holdings: BTCI, QQQI, SCHD, VOO
+              </div>
+            </div>
+
+          </div>
+
+          <div class="modern-card">
+            <div class="card-title-row">
+              <div class="card-heading">
+                <span>Major Brokerages ETF Fee & DRIP Matrix</span>
+              </div>
+              <span class="tag tag-purple">9 Major Brokers Verified</span>
+            </div>
+            
+            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 12px;">
+              Real-world commission fee schedules and dividend reinvestment policies across major US retail brokerages:
+            </p>
+
+            <div class="broker-table-wrapper">
+              <table class="broker-table">
+                <thead>
+                  <tr>
+                    <th>Brokerage</th>
+                    <th>Roundhill 0DTE (QDTE, XDTE)</th>
+                    <th>Defiance Weeklies (QQQY, WDTE)</th>
+                    <th>NEOS ETFs (QQQI, BTCI)</th>
+                    <th>Automatic DRIP Policy</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Robinhood</strong></td>
+                    <td><span class="fee-free">✓ Free ($0.00)</span></td>
+                    <td><span class="fee-free">✓ Free ($0.00)</span></td>
+                    <td><span class="fee-free">✓ Free ($0.00)</span></td>
+                    <td><span class="fee-free">✓ Free (Fractional DRIP)</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Public.com</strong></td>
+                    <td><span class="fee-free">✓ Free ($0.00)</span></td>
+                    <td><span class="fee-free">✓ Free ($0.00)</span></td>
+                    <td><span class="fee-free">✓ Free ($0.00)</span></td>
+                    <td><span class="fee-free">✓ Free (Instant DRIP)</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Charles Schwab</strong></td>
+                    <td><span class="fee-free">✓ Free ($0.00)</span></td>
+                    <td><span class="fee-free">✓ Free ($0.00)</span></td>
+                    <td><span class="fee-free">✓ Free ($0.00)</span></td>
+                    <td><span class="fee-free">✓ Free ($0.00)</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>E*TRADE (Morgan Stanley)</strong></td>
+                    <td><span class="fee-free">✓ Free ($0.00)</span></td>
+                    <td><span class="fee-free">✓ Free ($0.00)</span></td>
+                    <td><span class="fee-free">✓ Free ($0.00)</span></td>
+                    <td><span class="fee-free">✓ Free (Full DRIP Support)</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Webull</strong></td>
+                    <td><span class="fee-free">✓ Free ($0.00)</span></td>
+                    <td><span class="fee-free">✓ Free ($0.00)</span></td>
+                    <td><span class="fee-free">✓ Free ($0.00)</span></td>
+                    <td><span class="fee-free">✓ Free (Fractional Shares)</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>SoFi Invest</strong></td>
+                    <td><span class="fee-free">✓ Free ($0.00)</span></td>
+                    <td><span class="fee-free">✓ Free ($0.00)</span></td>
+                    <td><span class="fee-free">✓ Free ($0.00)</span></td>
+                    <td><span class="fee-free">✓ Free (Automated DRIP)</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Fidelity</strong></td>
+                    <td><span class="fee-warning">~$1.41 / sh (~5% fee)</span></td>
+                    <td><span class="fee-free">✓ Free ($0.00)</span></td>
+                    <td><span class="fee-free">✓ Free ($0.00)</span></td>
+                    <td><span class="fee-free">✓ Free (No Fee on DRIP)</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Interactive Brokers (IBKR)</strong></td>
+                    <td><span class="fee-warning">$0.005 / sh ($1 min)</span></td>
+                    <td><span class="fee-warning">$0.005 / sh ($1 min)</span></td>
+                    <td><span class="fee-warning">$0.005 / sh ($1 min)</span></td>
+                    <td><span class="fee-free">✓ Free ($0.00)</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Vanguard</strong></td>
+                    <td><span class="fee-bad">Restricts 0DTE Options</span></td>
+                    <td><span class="fee-bad">Restricts Derivatives</span></td>
+                    <td><span class="fee-warning">Restricts Crypto (BTCI)</span></td>
+                    <td><span class="fee-free">✓ Free (Approved Funds)</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div style="background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 16px; margin-top: 18px;" id="audit-action-advice"></div>
+          </div>
+
+        </div>
+
+        <!-- TAB 9: BACKTESTER -->
+        <div class="tab-view" id="view-backtester" style="display: none;">
+          <div class="modern-card">
+            <div class="card-title-row">
+              <div class="card-heading">
+                <span>NAV Decay vs. Total Return Interactive Backtester</span>
+              </div>
+              <span class="tag tag-purple">5-Year Compounding Engine</span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-bottom: 16px;">
+              <div>
+                <label style="font-size: 11px; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 4px;">ASSET</label>
+                <select class="search-input" id="sim-asset" onchange="runBacktestSimulation()" style="padding: 9px 12px; font-size: 13px;">
+                  <option value="BTCI">BTCI (~27.5% Yield)</option>
+                  <option value="QQQY">QQQY (~30.0% Yield)</option>
+                  <option value="GOF">GOF (~20.4% Yield)</option>
+                  <option value="SPYI">SPYI (~11.7% Yield)</option>
+                  <option value="QDTE">QDTE (~23.8% Yield)</option>
+                </select>
+              </div>
+              <div>
+                <label style="font-size: 11px; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 4px;">CAPITAL ($)</label>
+                <input type="number" class="search-input" id="sim-capital" value="10000" onchange="runBacktestSimulation()" style="padding: 9px 12px; font-size: 13px;">
+              </div>
+              <div>
+                <label style="font-size: 11px; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 4px;">MARKET TREND</label>
+                <select class="search-input" id="sim-scenario" onchange="runBacktestSimulation()" style="padding: 9px 12px; font-size: 13px;">
+                  <option value="flat">Flat / Rangebound</option>
+                  <option value="bull">Bull Market (+30%)</option>
+                  <option value="bear">Bear Market (-25%)</option>
+                </select>
+              </div>
+              <div>
+                <label style="font-size: 11px; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 4px;">ENTRY PRICE</label>
+                <select class="search-input" id="sim-entry" onchange="runBacktestSimulation()" style="padding: 9px 12px; font-size: 13px;">
+                  <option value="now">Current Price ($28.21)</option>
+                  <option value="peak">Peak High ($50.00)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="chart-viewport" style="height: 260px;">
+              <canvas id="backtestChart"></canvas>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border-subtle);">
+              <div>
+                <div style="font-size: 11px; color: var(--text-muted);">Annual Cash Flow</div>
+                <div style="font-size: 16px; font-weight: 800; color: var(--rh-green);" id="sim-res-cash">+$2,748 / yr</div>
+              </div>
+              <div>
+                <div style="font-size: 11px; color: var(--text-muted);">1-Yr Value (DRIP ON)</div>
+                <div style="font-size: 16px; font-weight: 800; color: #60a5fa;" id="sim-res-val">$12,450 (+24.5%)</div>
+              </div>
+              <div>
+                <div style="font-size: 11px; color: var(--text-muted);">Time to Turn Green</div>
+                <div style="font-size: 16px; font-weight: 800; color: var(--rh-green);" id="sim-res-breakeven">Month 1</div>
+              </div>
+              <div>
+                <div style="font-size: 11px; color: var(--text-muted);">House Money Date</div>
+                <div style="font-size: 16px; font-weight: 800; color: #c4b5fd;" id="sim-res-house">Month 42 (3.5 Yrs)</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================= RIGHT COLUMN: STICKY ORDER & LOOKUP DOCK ================= -->
+      <aside class="sticky-sidebar">
+        
+      <!-- ================= RIGHT COLUMN: STICKY ORDER & LOOKUP DOCK ================= -->
+      <aside class="sticky-sidebar">
+        
+        <!-- Quick Action Card -->
+        <div class="action-dock">
+          <div class="dock-header">
+            <span>Instant Stock & ETF Lookup</span>
+          </div>
+
+          <!-- Search / Ticker Input -->
+          <div class="search-wrapper">
+            <input type="text" class="search-input" id="dock-ticker-input" placeholder="Search Ticker (e.g. WDTE, QDTE, NVDA...)" oninput="handleDockLookup()" autocomplete="off">
+          </div>
+
+          <!-- Live Quote Widget -->
+          <div class="live-quote-card" id="dock-quote-widget">
+            <div class="quote-header">
+              <div class="quote-name" id="dock-name">Enter any ticker</div>
+              <span class="tag tag-purple" id="dock-badge">yfinance Ready</span>
+            </div>
+            <div class="quote-grid">
+              <div>
+                <div class="quote-stat-label">Live Price:</div>
+                <div class="quote-stat-val" id="dock-price">$0.00</div>
+              </div>
+              <div>
+                <div class="quote-stat-label">Dividend Yield:</div>
+                <div class="quote-stat-val" style="color: var(--rh-green);" id="dock-yield">0.00%</div>
+              </div>
+              <div>
+                <div class="quote-stat-label">Frequency:</div>
+                <div class="quote-stat-val" id="dock-freq">Weekly/Monthly</div>
+              </div>
+              <div>
+                <div class="quote-stat-label">Tax Status:</div>
+                <div class="quote-stat-val" id="dock-tax">Tax-Free/ROC</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Add Form Inputs -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px;">
+            <div>
+              <label style="font-size: 11px; font-weight: 600; color: var(--text-secondary); display: block; margin-bottom: 4px;">Account Type</label>
+              <select class="search-input" id="dock-account-input" style="padding: 10px 12px; font-size: 13px;">
+                <option value="Roth IRA">Roth IRA (100% Tax-Free)</option>
+                <option value="Traditional 401(k)">Traditional 401(k) (Tax-Deferred)</option>
+                <option value="Roth 401(k)">Roth 401(k) (Tax-Free)</option>
+                <option value="Traditional IRA">Traditional IRA (Tax-Deferred)</option>
+                <option value="HSA">HSA (Triple Tax-Free)</option>
+                <option value="Taxable">Taxable Brokerage (ROC / 1256)</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size: 11px; font-weight: 600; color: var(--text-secondary); display: block; margin-bottom: 4px;">Shares</label>
+              <input type="number" step="any" class="search-input" id="dock-shares-input" placeholder="e.g. 50" style="padding: 10px 12px; font-size: 13px;">
+            </div>
+          </div>
+
+          <button class="btn-primary" onclick="handleDockAddAsset()">
+            <span>Add to My Portfolio</span>
+          </button>
+        </div>
+
+        <!-- Freedom Milestone Progress Card -->
+        <div class="action-dock">
+          <div class="dock-header">
+            <span>$1,000 / Mo Freedom Goal</span>
+          </div>
+          <div style="font-size: 13px; color: var(--text-secondary);">
+            Progress to complete passive bill replacement:
+          </div>
+          <div class="progress-box">
+            <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 700;">
+              <span id="dock-freedom-cash">$66.02 / mo</span>
+              <span style="color: #c4b5fd;" id="dock-freedom-pct">6.6%</span>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" id="dock-freedom-bar" style="width: 6.6%;"></div>
+            </div>
+            <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">
+              <strong>39 Months to $1,000/mo</strong> with continuous DRIP
+            </div>
+          </div>
+        </div>
+
+        <!-- Tax-Shield Summary Widget -->
+        <div class="action-dock">
+          <div class="dock-header">
+            <span>Income Tax Shield</span>
+          </div>
+          <div style="font-size: 13px; display: flex; flex-direction: column; gap: 8px;">
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: var(--text-secondary);">Roth Tax-Free:</span>
+              <strong style="color: var(--rh-green);" id="dock-tax-roth">$66.02 / mo</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: var(--text-secondary);">Tax-Sheltered / ROC:</span>
+              <strong id="dock-tax-sheltered">$0.00 / mo</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: var(--text-secondary);">Capital Loss Shield:</span>
+              <strong style="color: #60a5fa;">$4,000 Total</strong>
+            </div>
+          </div>
+          <div style="margin-top: 12px; background: var(--rh-green-soft); border: 1px solid var(--rh-green-glow); border-radius: var(--radius-sm); padding: 8px; text-align: center; font-size: 12px; font-weight: 700; color: var(--rh-green);">
+            NET TAX DRAG: $0.00 / MONTH
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+
+  </div>
+
+  <!-- Institutional Real-World Brokerage Sync Hub -->
+  <div class="modal-overlay" id="link-broker-modal">
+    <div class="modal-content" style="max-width: 680px;">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">
+            <span>Connect Live Brokerage Account</span>
+          </div>
+          <div style="font-size: 11px; color: var(--text-secondary); margin-top: 2px;">
+            Secure read-only sync via SnapTrade / Plaid API • 256-Bit SSL Bank-Grade Encryption
+          </div>
+        </div>
+        <button class="btn-close-modal" onclick="closeLinkBrokerageModal()">✕</button>
+      </div>
+
+      <!-- Trust Badges Row -->
+      <div class="broker-security-strip">
+        <div class="sec-badge">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>Read-Only Encrypted (Zero Withdrawal / Trade Access)</span>
+        </div>
+        <div class="sec-badge">
+          <span class="pulse-dot"></span>
+          <span>SOC-2 Type II Certified</span>
+        </div>
+      </div>
+
+      <!-- Brokerage View Mode Switcher -->
+      <div class="broker-mode-tabs">
+        <button class="broker-tab-btn active" id="broker-tab-oauth" onclick="setBrokerPortalTab('oauth')">1-Click Direct Broker Sync</button>
+        <button class="broker-tab-btn" id="broker-tab-upload" onclick="setBrokerPortalTab('upload')">Drag & Drop Statement (CSV/OFX)</button>
+        <button class="broker-tab-btn" id="broker-tab-manage" onclick="setBrokerPortalTab('manage')">Connected Accounts (<span id="connected-broker-count">1</span>)</button>
+      </div>
+
+      <!-- TAB 1: 1-CLICK DIRECT BROKER SYNC -->
+      <div class="broker-portal-view" id="broker-view-oauth">
+        <div class="broker-account-type-select-row">
+          <label style="font-size: 12px; font-weight: 700; color: var(--text-secondary);">Target Tax Vault for Synced Holdings:</label>
+          <select class="custom-select" id="broker-target-account" style="padding: 6px 12px; font-size: 12px; border-radius: var(--radius-sm);">
+            <option value="Roth IRA">Roth IRA (100% Tax-Free)</option>
+            <option value="Traditional 401(k)">Traditional 401(k) (Tax-Deferred)</option>
+            <option value="HSA">HSA (Triple Tax-Free)</option>
+            <option value="Taxable" selected>Taxable Brokerage (ROC / 1256)</option>
+          </select>
+        </div>
+
+        <div class="broker-grid">
+          <div class="broker-card" onclick="connectBrokerAPI('Robinhood')">
+            <div class="broker-logo-avatar" style="background:#00c805; color:#000;">RH</div>
+            <div class="broker-card-info">
+              <div class="broker-card-name">Robinhood</div>
+              <div class="broker-card-type">0% Commission • Instant Sync</div>
+            </div>
+            <span class="tag tag-green">Connect</span>
+          </div>
+
+          <div class="broker-card" onclick="connectBrokerAPI('Charles Schwab')">
+            <div class="broker-logo-avatar" style="background:#0076a8; color:#fff;">CS</div>
+            <div class="broker-card-info">
+              <div class="broker-card-name">Charles Schwab</div>
+              <div class="broker-card-type">Roth IRA / 401(k) / Taxable</div>
+            </div>
+            <span class="tag tag-green">Connect</span>
+          </div>
+
+          <div class="broker-card" onclick="connectBrokerAPI('Fidelity')">
+            <div class="broker-logo-avatar" style="background:#4a773c; color:#fff;">FID</div>
+            <div class="broker-card-info">
+              <div class="broker-card-name">Fidelity Investments</div>
+              <div class="broker-card-type">IRAs • 401(k) • HSA</div>
+            </div>
+            <span class="tag tag-green">Connect</span>
+          </div>
+
+          <div class="broker-card" onclick="connectBrokerAPI('Webull')">
+            <div class="broker-logo-avatar" style="background:#ffb300; color:#000;">WB</div>
+            <div class="broker-card-info">
+              <div class="broker-card-name">Webull</div>
+              <div class="broker-card-type">Full Options & ETF Support</div>
+            </div>
+            <span class="tag tag-green">Connect</span>
+          </div>
+
+          <div class="broker-card" onclick="connectBrokerAPI('Interactive Brokers')">
+            <div class="broker-logo-avatar" style="background:#c91424; color:#fff;">IB</div>
+            <div class="broker-card-info">
+              <div class="broker-card-name">Interactive Brokers</div>
+              <div class="broker-card-type">Global Institutional Routing</div>
+            </div>
+            <span class="tag tag-green">Connect</span>
+          </div>
+
+          <div class="broker-card" onclick="connectBrokerAPI('Vanguard')">
+            <div class="broker-logo-avatar" style="background:#990000; color:#fff;">VG</div>
+            <div class="broker-card-info">
+              <div class="broker-card-name">Vanguard</div>
+              <div class="broker-card-type">Index Funds & Retirement</div>
+            </div>
+            <span class="tag tag-green">Connect</span>
+          </div>
+
+          <div class="broker-card" onclick="connectBrokerAPI('Public.com')">
+            <div class="broker-logo-avatar" style="background:#7952fc; color:#fff;">P</div>
+            <div class="broker-card-info">
+              <div class="broker-card-name">Public.com</div>
+              <div class="broker-card-type">High-Yield Cash & Treasury</div>
+            </div>
+            <span class="tag tag-green">Connect</span>
+          </div>
+
+          <div class="broker-card" onclick="connectBrokerAPI('E*TRADE')">
+            <div class="broker-logo-avatar" style="background:#663399; color:#fff;">E*</div>
+            <div class="broker-card-info">
+              <div class="broker-card-name">E*TRADE (Morgan Stanley)</div>
+              <div class="broker-card-type">Retirement & Active Trader</div>
+            </div>
+            <span class="tag tag-green">Connect</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: DRAG & DROP STATEMENT IMPORTER -->
+      <div class="broker-portal-view" id="broker-view-upload" style="display: none;">
+        <div class="statement-dropzone" id="statement-dropzone" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+          <div style="font-size: 32px; margin-bottom: 8px;">📂</div>
+          <div style="font-size: 15px; font-weight: 800; color: var(--text-primary);">Drag & Drop Brokerage Statement Here</div>
+          <div style="font-size: 12px; color: var(--text-secondary); margin: 6px 0 14px;">
+            Supports exported CSV, OFX, or QFX files from Schwab, Fidelity, Robinhood, Webull, Vanguard & E*TRADE
+          </div>
+          <label class="btn-primary" style="display: inline-flex; width: auto; padding: 8px 18px; font-size: 12px; cursor: pointer;">
+            Browse Local File <input type="file" accept=".csv,.ofx,.qfx" style="display: none;" onchange="handleStatementFile(event)">
+          </label>
+        </div>
+
+        <div id="statement-preview-card" style="display: none; margin-top: 14px; padding: 14px; background: var(--bg-card); border-radius: var(--radius-md); border: 1px solid var(--border-highlight);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <div style="font-weight: 800; font-size: 13px;" id="statement-preview-title">Statement Parsed Successfully</div>
+            <span class="tag tag-green" id="statement-preview-count">0 Positions</span>
+          </div>
+          <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 12px;" id="statement-preview-summary">
+            Ready to import into your portfolio.
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn-primary" style="padding: 8px 14px; font-size: 12px;" onclick="confirmStatementImport()">Confirm & Import All</button>
+            <button class="btn-export" onclick="cancelStatementImport()">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: CONNECTED ACCOUNTS MANAGER -->
+      <div class="broker-portal-view" id="broker-view-manage" style="display: none;">
+        <div id="connected-brokers-list" style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+    <!-- Compliance & Trust Footer -->
+    <footer class="compliance-footer">
+      <div class="footer-trust-row">
+        <div class="trust-badge">
+          <span>256-Bit SSL Bank-Grade Encryption • Read-Only Brokerage Connection</span>
+        </div>
+        <div class="export-btn-group">
+          <button class="btn-export" onclick="exportPortfolioCSV()">Export CSV Data</button>
+          <button class="btn-export" onclick="exportTaxAuditPDF()">Print / PDF Tax Audit</button>
+          <button class="btn-export" onclick="openUpgradeModal()">Pro Subscription</button>
+        </div>
+      </div>
+      <div>
+        <strong>Disclaimer & Disclosures:</strong> New Drip is a financial technology software application designed for educational and informational portfolio modeling purposes only. New Drip is not a Registered Investment Advisor (RIA), broker-dealer, or tax accounting firm. Past dividend yields and historical distributions do not guarantee future performance. Always consult a licensed CPA or CFP before executing investment decisions.
+      </div>
+      <div style="display: flex; gap: 16px; color: var(--text-secondary); font-size: 11px;">
+        <span>© 2026 New Drip, Inc. All rights reserved.</span>
+        <a href="#terms" onclick="alert('New Drip Terms of Service: Read-only educational portfolio tracking.'); return false;" style="color: var(--text-secondary);">Terms of Service</a>
+        <a href="#privacy" onclick="alert('New Drip Privacy Policy: We never sell or share user financial data. All credentials use end-to-end OAuth encryption.'); return false;" style="color: var(--text-secondary);">Privacy Policy</a>
+        <a href="#security" onclick="alert('Security Assurance: Powered by read-only OAuth tokens via SnapTrade/Plaid.'); return false;" style="color: var(--text-secondary);">Security Architecture</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Commercial Pro Upgrade Modal -->
+  <div class="modal-overlay" id="upgrade-pro-modal">
+    <div class="modal-box" style="max-width: 600px;">
+      <div class="modal-header">
+        <div class="modal-title">
+          <span>Upgrade to New Drip Pro</span>
+        </div>
+        <button class="btn-close-modal" onclick="closeUpgradeModal()">✕</button>
+      </div>
+      <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px;">
+        Supercharge your passive income with unlimited brokerage syncing, 5-Year historical heatmaps, live 1099-DIV simulations, and unlimited AI Copilot insights:
+      </p>
+
+      <div class="pricing-grid">
+        <!-- Monthly Tier -->
+        <div class="pricing-card">
+          <div>
+            <div class="pricing-title">Monthly Pass</div>
+            <div style="font-size: 11px; color: var(--text-muted);">Flexible month-to-month</div>
+            <div class="pricing-price">$9.99 <span style="font-size: 13px; font-weight: 600; color: var(--text-muted);">/ mo</span></div>
+            <ul class="pricing-features">
+              <li>✓ Unlimited Brokerage Syncs</li>
+              <li>✓ 5-Year Yield History Heatmaps</li>
+              <li>✓ Form 1099-DIV Live Simulator</li>
+              <li>✓ Private AI Wealth Strategist</li>
+              <li>✓ 1-Click Strategy Cloning</li>
+            </ul>
+          </div>
+          <button class="btn-upgrade-action secondary" onclick="simulateStripeCheckout('Monthly')">
+            Get Monthly Pro
+          </button>
+        </div>
+
+        <!-- Annual Founder Tier -->
+        <div class="pricing-card featured">
+          <div class="pricing-badge-popular">SAVE 34%</div>
+          <div>
+            <div class="pricing-title">Annual Founder Pass</div>
+            <div style="font-size: 11px; color: var(--text-muted);">Billed annually ($6.58/mo)</div>
+            <div class="pricing-price" style="color: var(--rh-green);">$79.00 <span style="font-size: 13px; font-weight: 600; color: var(--text-muted);">/ year</span></div>
+            <ul class="pricing-features">
+              <li>✓ <strong>Everything in Monthly</strong></li>
+              <li>✓ Priority Real-Time Market Feed</li>
+              <li>✓ Custom CPA Tax Export PDF</li>
+              <li>✓ Early Access to New Funds</li>
+              <li>✓ Founder Priority Support</li>
+            </ul>
+          </div>
+          <button class="btn-upgrade-action primary" onclick="simulateStripeCheckout('Annual')">
+            Activate Founder Pass
+          </button>
+        </div>
+      </div>
+
+      <div style="margin-top: 16px; text-align: center; font-size: 11px; color: var(--text-muted);">
+        Secure 256-bit encrypted checkout. Cancel anytime with 1-click in your account settings.
+      </div>
+    </div>
+  </div>
+
+  <!-- Luxury Acorns/Stripe-Style 2-Column Login & Interactive Product Showcase Portal -->
+  <div class="auth-portal-overlay" id="auth-modal" style="display: none;">
+    <div class="auth-portal-container">
+      
+      <!-- LEFT COLUMN: ANIMATED PRODUCT REEL & VALUE PROPOSITION SHOWCASE -->
+      <div class="auth-showcase-panel">
+        <div class="showcase-ambient-glow"></div>
+
+        <!-- Animated Brand Hero -->
+        <div class="auth-brand-hero">
+          <div class="auth-brand-left">
+            <div class="auth-logo-anim-wrap">
+              <img src="logo.png" alt="New Drip Logo" class="auth-logo-anim-img" id="auth-brand-logo-img">
+            </div>
+            <div class="auth-brand-text">
+              <div class="brand-title">New Drip</div>
+              <div class="brand-sub">Autonomous Cash Velocity & Compounding Engine</div>
+            </div>
+          </div>
+          <span class="tag tag-green">26.6% Target APY</span>
+        </div>
+
+        <!-- Story Reel Progress Timers (Reels Style) -->
+        <div class="story-progress-row">
+          <div class="story-progress-item" id="story-prog-0" onclick="selectAuthReel(0)" title="Compounding Engine">
+            <div class="story-progress-fill" id="story-fill-0"></div>
+          </div>
+          <div class="story-progress-item" id="story-prog-1" onclick="selectAuthReel(1)" title="1099 Tax Shield">
+            <div class="story-progress-fill" id="story-fill-1"></div>
+          </div>
+          <div class="story-progress-item" id="story-prog-2" onclick="selectAuthReel(2)" title="Expense Matcher">
+            <div class="story-progress-fill" id="story-fill-2"></div>
+          </div>
+          <div class="story-progress-item" id="story-prog-3" onclick="selectAuthReel(3)" title="Broker Matrix">
+            <div class="story-progress-fill" id="story-fill-3"></div>
+          </div>
+        </div>
+
+        <!-- Dynamic Reel Viewport -->
+        <div class="auth-reel-viewport" onmouseenter="pauseAuthReels()" onmouseleave="resumeAuthReels()">
+          
+          <!-- REEL 0: COMPOUNDING SNOWBALL & CASH VELOCITY -->
+          <div class="auth-reel-slide active" id="auth-reel-0">
+            <div class="reel-media-card">
+              <img src="compounding_hero.jpg" alt="Compounding Dividends Engine" class="reel-media-img">
+              <div class="reel-hud-overlay">
+                <div class="hud-top-badge">Autonomous DRIP Engine</div>
+                <div class="hud-bottom-stats">
+                  <div class="hud-stat-box">
+                    <div class="hud-stat-label">Total Dividends</div>
+                    <div class="hud-stat-val" style="color: var(--rh-green);">+$84,520</div>
+                  </div>
+                  <div class="hud-stat-box">
+                    <div class="hud-stat-label">Reinvestment Rate</div>
+                    <div class="hud-stat-val" style="color: #60a5fa;">100% DRIP</div>
+                  </div>
+                  <div class="hud-stat-box">
+                    <div class="hud-stat-label">Portfolio Value</div>
+                    <div class="hud-stat-val" style="color: #c4b5fd;">$2,145,000</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="reel-content-title">Autonomous Cash Velocity & Compounding Snowball</div>
+            <div class="reel-content-desc">
+              Reinvest weekly distributions into high-velocity 0DTE & covered call strategies (QDTE, QQQY, BTCI). Watch your passive dividend snowball multiply automatically.
+            </div>
+            <div class="reel-feature-pills">
+              <span class="reel-pill">Weekly Paydays</span>
+              <span class="reel-pill">Exponential Compounding</span>
+              <span class="reel-pill">Real-Time Yields</span>
+            </div>
+          </div>
+
+          <!-- REEL 1: ZERO-SURPRISE TAX SHIELD -->
+          <div class="auth-reel-slide" id="auth-reel-1">
+            <div class="reel-media-card">
+              <img src="tax_shield_hero.jpg" alt="Tax Shield Vault" class="reel-media-img">
+              <div class="reel-hud-overlay">
+                <div class="hud-top-badge" style="background: rgba(5, 150, 105, 0.85); border-color: rgba(5, 150, 105, 0.4);">Zero-Drag Tax Shield</div>
+                <div class="hud-bottom-stats">
+                  <div class="hud-stat-box">
+                    <div class="hud-stat-label">Effective Tax Rate</div>
+                    <div class="hud-stat-val" style="color: var(--rh-green);">0% Shielded</div>
+                  </div>
+                  <div class="hud-stat-box">
+                    <div class="hud-stat-label">IRS Form 1099-DIV</div>
+                    <div class="hud-stat-val" style="color: #60a5fa;">ROC + Sec 1256</div>
+                  </div>
+                  <div class="hud-stat-box">
+                    <div class="hud-stat-label">Roth IRA Savings</div>
+                    <div class="hud-stat-val" style="color: #c4b5fd;">100% Tax-Free</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="reel-content-title">IRS Form 1099-DIV Simulation & Tax Optimization</div>
+            <div class="reel-content-desc">
+              Eliminate tax drag before year-end filing. Simulate Return of Capital (ROC) basis reductions, Section 1256 60/40 capital gains splits, and optimal Roth IRA asset location.
+            </div>
+            <div class="reel-feature-pills">
+              <span class="reel-pill">0% Current-Year Drag</span>
+              <span class="reel-pill">Section 1256 Sheltered</span>
+              <span class="reel-pill">Roth IRA Maximized</span>
+            </div>
+          </div>
+
+          <!-- REEL 2: PASSIVE LIVING EXPENSE REPLACEMENT -->
+          <div class="auth-reel-slide" id="auth-reel-2">
+            <div class="reel-media-card" style="background: var(--bg-elevated); padding: 16px; display: flex; flex-direction: column; justify-content: center; gap: 8px;">
+              <div style="font-size: 11px; font-weight: 700; color: #c4b5fd; text-transform: uppercase;">Live Expense Payoff Tracker</div>
+              <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-card); padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border-subtle);">
+                <span style="font-size: 12px; font-weight: 700; color: var(--text-primary);">Phone & Mobile ($45/mo)</span>
+                <span class="tag tag-green">100% Covered by QQQY</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-card); padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border-subtle);">
+                <span style="font-size: 12px; font-weight: 700; color: var(--text-primary);">High-Speed Internet ($80/mo)</span>
+                <span class="tag tag-green">100% Covered by QDTE</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-card); padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border-subtle);">
+                <span style="font-size: 12px; font-weight: 700; color: var(--text-primary);">Living Rent ($1,800/mo)</span>
+                <span class="tag tag-purple">Target: Month 39</span>
+              </div>
+            </div>
+            <div class="reel-content-title">Replace Living Expenses One by One</div>
+            <div class="reel-content-desc">
+              Directly tie high-yield dividend cash flow to your real-world recurring bills. Track exact milestones until 100% of your rent, groceries, and utilities are paid purely by passive income.
+            </div>
+            <div class="reel-feature-pills">
+              <span class="reel-pill">Dynamic Bill Matcher</span>
+              <span class="reel-pill">100% Real-Time Freedom</span>
+              <span class="reel-pill">Custom Milestones</span>
+            </div>
+          </div>
+
+          <!-- REEL 3: MULTI-BROKER MATRIX & INSTITUTIONAL BACKTESTING -->
+          <div class="auth-reel-slide" id="auth-reel-3">
+            <div class="reel-media-card" style="background: var(--bg-elevated); padding: 16px; display: flex; flex-direction: column; justify-content: center; gap: 8px;">
+              <div style="font-size: 11px; font-weight: 700; color: #c4b5fd; text-transform: uppercase;">Brokerage Fee & DRIP Audit</div>
+              <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-card); padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border-subtle);">
+                <span style="font-size: 12px; font-weight: 700; color: var(--text-primary);">Robinhood / Schwab / Public</span>
+                <span class="tag tag-green">✓ Free ($0.00 Comm.)</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-card); padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border-subtle);">
+                <span style="font-size: 12px; font-weight: 700; color: var(--text-primary);">Fidelity Manual Buy Warning</span>
+                <span class="tag tag-amber">5% Surcharge Alert</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-card); padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border-subtle);">
+                <span style="font-size: 12px; font-weight: 700; color: var(--text-primary);">5-Year NAV Backtester</span>
+                <span class="tag tag-blue">Total Return Verified</span>
+              </div>
+            </div>
+            <div class="reel-content-title">Multi-Broker Sync & 5-Year Compounding Backtester</div>
+            <div class="reel-content-desc">
+              Connect Robinhood, Schwab, Fidelity, or Public with read-only bank-grade security. Backtest 5-year historical returns, NAV erosion resilience, and instant fractional DRIP policies.
+            </div>
+            <div class="reel-feature-pills">
+              <span class="reel-pill">9 Brokers Audited</span>
+              <span class="reel-pill">NAV Decay Backtest</span>
+              <span class="reel-pill">Read-Only Plaid Sync</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Reel Carousel Controls & Category Tags -->
+        <div class="auth-reel-controls">
+          <div class="reel-category-tags">
+            <button class="reel-tag-btn active" id="reel-tag-0" onclick="selectAuthReel(0)">Compounding</button>
+            <button class="reel-tag-btn" id="reel-tag-1" onclick="selectAuthReel(1)">Tax Shield</button>
+            <button class="reel-tag-btn" id="reel-tag-2" onclick="selectAuthReel(2)">Bills</button>
+            <button class="reel-tag-btn" id="reel-tag-3" onclick="selectAuthReel(3)">Brokers</button>
+          </div>
+          <div class="reel-nav-buttons">
+            <button class="btn-reel-nav" onclick="prevAuthReel()" title="Previous Reel">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button class="btn-reel-nav" id="btn-reel-playpause" onclick="toggleAuthReelPlay()" title="Pause / Play Reel">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="icon-reel-playpause"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+            </button>
+            <button class="btn-reel-nav" onclick="nextAuthReel()" title="Next Reel">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN: LUXURY AUTH & REGISTRATION FORM -->
+      <div class="auth-form-panel">
+        
+        <!-- Top Actions: Theme Switcher & Modal Close -->
+        <div class="auth-form-top-actions">
+          <button class="btn-theme-toggle" onclick="toggleTheme()" title="Switch Theme" style="padding: 6px 10px;">
+            <span class="theme-icon-wrap" style="width: 16px; height: 16px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </span>
+          </button>
+          <button class="btn-close-modal" onclick="closeAuthModal()" title="Close / Demo Mode" style="font-size: 16px;">✕</button>
+        </div>
+
+        <div>
+          <div class="auth-title" id="auth-main-title">Sign In to New Drip</div>
+          <div class="auth-subtitle" id="auth-main-subtitle">
+            Autonomous cash velocity, automated compounding & tax-free growth.
+          </div>
+
+          <!-- Segmented Sign In / Create Account Switch -->
+          <div class="auth-segmented-switch">
+            <button class="auth-switch-btn active" id="auth-tab-login" onclick="setAuthMode('login')">
+              Sign In
+            </button>
+            <button class="auth-switch-btn" id="auth-tab-signup" onclick="setAuthMode('signup')">
+              Create Account
+            </button>
+          </div>
+
+          <!-- 1-Click Social OAuth Stack -->
+          <div class="auth-social-stack">
+            <button class="btn-social-oauth" onclick="handleSocialAuth('Apple')">
+              <span class="social-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.84c.65-.79 1.1-1.9 0.98-3-.97.04-2.13.65-2.82 1.44-.61.69-1.13 1.8-0.99 2.87 1.07.08 2.18-.52 2.83-1.31z"/></svg>
+              </span>
+              <span id="btn-oauth-apple-label">Continue with Apple</span>
+            </button>
+
+            <button class="btn-social-oauth" onclick="handleSocialAuth('Google')">
+              <span class="social-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.6l3.1-3.1C17.3 1.8 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.3 9 5 12 5z"/><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z"/><path fill="#FBBC05" d="M5.6 14.8c-.2-.7-.4-1.5-.4-2.3s.2-1.6.4-2.3L1.9 7.3C.7 9.7 0 12.3 0 15.1s.7 5.4 1.9 7.8l3.7-2.9c-.2-.7-.4-1.5-.4-2.3z"/><path fill="#34A853" d="M12 23.5c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2.3-6.4-5.2L1.9 16.5C3.7 20.2 7.5 23.5 12 23.5z"/></svg>
+              </span>
+              <span id="btn-oauth-google-label">Continue with Google</span>
+            </button>
+          </div>
+
+          <div class="auth-divider">
+            <span>or continue with email</span>
+          </div>
+
+          <!-- Email / Password Form -->
+          <form id="auth-email-form" onsubmit="handleEmailAuthSubmit(event)">
+            <div class="auth-form-group">
+              <div class="auth-input-wrap">
+                <label class="auth-input-label">Email Address</label>
+                <input type="email" class="auth-input" id="auth-email-input" placeholder="name@example.com" required>
+              </div>
+              <div class="auth-input-wrap">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <label class="auth-input-label">Password</label>
+                  <a href="#forgot" onclick="alert('Password reset link sent to your email.'); return false;" style="font-size: 11px; color: var(--pub-purple); text-decoration: none; font-weight: 600;">Forgot?</a>
+                </div>
+                <input type="password" class="auth-input" id="auth-pass-input" placeholder="••••••••••••" required>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-auth-primary" id="btn-auth-submit">
+              Sign In to New Drip
+            </button>
+          </form>
+
+          <!-- Instant Live Demo Bypass Action -->
+          <button class="btn-demo-bypass" onclick="enterDemoMode()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span>Instant Live Demo (Explore All Features)</span>
+          </button>
+        </div>
+
+        <div class="auth-security-footnote">
+          256-Bit SSL Bank-Grade Encryption • Read-Only OAuth Security • Never Stores Broker Credentials
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
