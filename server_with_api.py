@@ -492,11 +492,6 @@ def generate_ai_copilot_response(question, portfolio=None):
 *Feel free to ask about any specific stock ticker, REIT, 0DTE strategy, or retirement milestone!*"""
     }
 
-class Handler(http.server.SimpleHTTPRequestHandler):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, directory=DIRECTORY, **kwargs)
-
-    def do_POST(self):
 # ================= LIVE BROKERAGE SYNC & STATEMENT PARSER =================
 LINKED_BROKERS = [
     {
@@ -603,6 +598,9 @@ def parse_brokerage_csv(csv_text):
     }
 
 class Handler(http.server.SimpleHTTPRequestHandler):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, directory=DIRECTORY, **kwargs)
+
     def end_headers(self):
         self.send_header('Access-Control-Allow-Origin', '*')
         self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
