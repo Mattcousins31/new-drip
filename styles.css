@@ -3116,4 +3116,197 @@ body {
   line-height: 1.4;
 }
 
+/* ================= NATIVE PHONE & PWA MOBILE RENDITIONS ================= */
+.mobile-bottom-dock {
+  display: none;
+}
+
+.pwa-install-banner {
+  position: fixed;
+  bottom: 74px;
+  left: 16px;
+  right: 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-highlight);
+  border-radius: var(--radius-lg);
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 999;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  animation: slideUpBanner 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUpBanner {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  /* Phone Body & Layout Adjustments */
+  body {
+    padding-bottom: 76px; /* Safe padding for bottom dock */
+  }
+
+  .app-container {
+    padding: 0 12px;
+  }
+
+  .main-feed {
+    padding: 14px 0 30px;
+  }
+
+  /* Compact Navbar for Mobile */
+  .navbar {
+    padding: 10px 14px;
+  }
+
+  .nav-menu-group {
+    display: none; /* Replaced by iOS Bottom Dock */
+  }
+
+  .nav-right-actions {
+    gap: 8px;
+  }
+
+  .btn-theme-toggle span:last-child {
+    display: none;
+  }
+
+  .btn-theme-toggle {
+    padding: 6px 10px;
+  }
+
+  /* iOS Native Floating Bottom Navigation Dock */
+  .mobile-bottom-dock {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    background: var(--bg-card);
+    border-top: 1px solid var(--border-subtle);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 9999;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.25);
+  }
+
+  .mobile-dock-btn {
+    background: transparent;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    color: var(--text-muted);
+    font-size: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: var(--radius-sm);
+    transition: all 0.15s ease;
+    flex: 1;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .mobile-dock-btn svg {
+    transition: transform 0.15s ease, stroke 0.15s ease;
+  }
+
+  .mobile-dock-btn.active {
+    color: var(--pub-purple);
+  }
+
+  .mobile-dock-btn.active svg {
+    stroke: var(--pub-purple);
+    transform: scale(1.12);
+  }
+
+  [data-theme="light"] .mobile-dock-btn.active {
+    color: #6366f1;
+  }
+
+  [data-theme="light"] .mobile-dock-btn.active svg {
+    stroke: #6366f1;
+  }
+
+  /* Swipeable Hero HUD Cards on Mobile */
+  .portfolio-hero-hud {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 10px;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+    scrollbar-width: none;
+  }
+
+  .portfolio-hero-hud::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hero-hud-card {
+    min-width: 220px;
+    flex: 0 0 220px;
+    scroll-snap-align: start;
+  }
+
+  /* Vision Arc Cinematic Stage on Mobile */
+  .cinematic-stage {
+    padding: 16px;
+  }
+
+  .stage-media-wrapper {
+    aspect-ratio: 16 / 10;
+  }
+
+  .stage-scrubber {
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+
+  .stage-scrubber::-webkit-scrollbar {
+    display: none;
+  }
+
+  .stage-step {
+    min-width: 140px;
+  }
+
+  /* Mobile Bottom Sheet Modals */
+  .modal-content, .modal-box {
+    max-width: 100% !important;
+    width: 100%;
+    margin: auto 0 0 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideUpSheet 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes slideUpSheet {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+
+  /* Touch-friendly buttons */
+  .btn-primary, .btn-secondary, .btn-export, .broker-card {
+    min-height: 44px;
+  }
+}
+
 

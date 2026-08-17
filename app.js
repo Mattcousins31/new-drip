@@ -650,6 +650,24 @@ function switchNavTab(tabId) {
   // Close any open mobile dropdowns
   document.querySelectorAll(".nav-dropdown").forEach(d => d.classList.remove("open"));
 
+  // Synchronize Mobile Bottom Dock Active State
+  const dockMap = {
+    'portfolio': 'dock-btn-portfolio',
+    'yieldhistory': 'dock-btn-yieldhistory',
+    'optimizer': 'dock-btn-optimizer',
+    'tax1099': 'dock-btn-optimizer',
+    'expenses': 'dock-btn-expenses',
+    'milestones': 'dock-btn-expenses',
+    'calendar': 'dock-btn-yieldhistory',
+    'copilot': 'dock-btn-copilot'
+  };
+  document.querySelectorAll('.mobile-dock-btn').forEach(btn => btn.classList.remove('active'));
+  const activeDockBtnId = dockMap[tabId];
+  if (activeDockBtnId) {
+    const activeDockBtn = document.getElementById(activeDockBtnId);
+    if (activeDockBtn) activeDockBtn.classList.add('active');
+  }
+
   // Trigger chart resizes & data updates
   if (tabId === "backtester" && backtestChartInstance) {
     setTimeout(() => backtestChartInstance.resize(), 50);
@@ -2619,5 +2637,44 @@ function exportPortfolioCSV() {
 
 function exportTaxAuditPDF() {
   window.print();
+}
+
+// ================= PWA & MOBILE SERVICE WORKER ENGINE =================
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  });
+}
+
+let deferredPWAInstallPrompt = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPWAInstallPrompt = e;
+  const banner = document.getElementById('pwa-install-banner');
+  if (banner) banner.style.display = 'flex';
+});
+
+function triggerPWAInstall() {
+  const banner = document.getElementById('pwa-install-banner');
+  if (banner) banner.style.display = 'none';
+  if (deferredPWAInstallPrompt) {
+    deferredPWAInstallPrompt.prompt();
+    deferredPWAInstallPrompt.userChoice.then(() => {
+      deferredPWAInstallPrompt = null;
+    });
+  } else {
+    // Check if on iOS Safari
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    if (isIOS) {
+      alert("To Install on iPhone/iPad:\n1. Tap the Share button (square with arrow) at the bottom of Safari.\n2. Tap 'Add to Home Screen'.\n3. Enjoy New Drip as a native fullscreen app!");
+    } else {
+      alert("To install, open your browser menu (⋮) and tap 'Add to Home Screen' or 'Install App'.");
+    }
+  }
+}
+
+function dismissPWAInstall() {
+  const banner = document.getElementById('pwa-install-banner');
+  if (banner) banner.style.display = 'none';
 }
 
