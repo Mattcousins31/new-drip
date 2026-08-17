@@ -35,14 +35,14 @@ const DEFAULT_PORTFOLIO = [
 
 // Default Living Expenses State
 const DEFAULT_EXPENSES = [
-  { id: "exp_1", name: "Streaming & Media", icon: "Media", cost: 15.00 },
-  { id: "exp_2", name: "Mobile Connectivity", icon: "Mobile", cost: 45.00 },
-  { id: "exp_3", name: "High-Speed Internet", icon: "Fiber", cost: 75.00 },
-  { id: "exp_4", name: "Power & Utilities", icon: "Energy", cost: 150.00 },
-  { id: "exp_5", name: "Nutrition & Food", icon: "Groceries", cost: 350.00 },
-  { id: "exp_6", name: "Auto & Transportation", icon: "Transport", cost: 500.00 },
-  { id: "exp_7", name: "Healthcare Coverage", icon: "Health", cost: 650.00 },
-  { id: "exp_8", name: "Primary Housing (FIRE)", icon: "Housing", cost: 1600.00 }
+  { id: "exp_1", name: "Streaming & Media", icon: "🍿", cost: 15.00 },
+  { id: "exp_2", name: "Mobile Connectivity", icon: "📱", cost: 45.00 },
+  { id: "exp_3", name: "High-Speed Internet", icon: "🌐", cost: 75.00 },
+  { id: "exp_4", name: "Power & Utilities", icon: "⚡", cost: 150.00 },
+  { id: "exp_5", name: "Nutrition & Food", icon: "🛒", cost: 350.00 },
+  { id: "exp_6", name: "Auto & Transportation", icon: "🚗", cost: 500.00 },
+  { id: "exp_7", name: "Healthcare Coverage", icon: "🏥", cost: 650.00 },
+  { id: "exp_8", name: "Primary Housing (FIRE)", icon: "🏠", cost: 1600.00 }
 ];
 
 // Load from localStorage
@@ -79,11 +79,26 @@ function persistPortfolio() {
 }
 
 function loadSavedExpenses() {
+  const iconMap = {
+    "Media": "🍿",
+    "Mobile": "📱",
+    "Fiber": "🌐",
+    "Energy": "⚡",
+    "Groceries": "🛒",
+    "Transport": "🚗",
+    "Health": "🏥",
+    "Housing": "🏠"
+  };
   try {
     const saved = localStorage.getItem("newdivi_expenses");
     if (saved) {
       const parsed = JSON.parse(saved);
-      if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        parsed.forEach(e => {
+          if (iconMap[e.icon]) e.icon = iconMap[e.icon];
+        });
+        return parsed;
+      }
     }
   } catch (e) {}
   return JSON.parse(JSON.stringify(DEFAULT_EXPENSES));
@@ -966,23 +981,23 @@ function renderExpenseFreedomMatrix() {
     row.innerHTML = `
       <div class="expense-top">
         <div class="expense-name">
-          <span style="font-size: 18px;">${exp.icon}</span>
-          <span id="expense-name-text-${exp.id}" style="color: ${isFunded ? 'var(--rh-green)' : '#ffffff'};">${exp.name}</span>
+          <span class="expense-icon-badge">${exp.icon}</span>
+          <span class="expense-title-text" id="expense-name-text-${exp.id}" style="color: ${isFunded ? 'var(--rh-green)' : '#ffffff'};">${exp.name}</span>
           <span id="expense-badge-${exp.id}">${isFunded ? '<span class="tag tag-green">100% FUNDED</span>' : `<span class="tag tag-purple">${fundedPct.toFixed(0)}% Funded</span>`}</span>
         </div>
         <div class="expense-cost-wrap">
-          <span style="font-size: 13px; color: var(--text-muted);">$</span>
+          <span class="expense-dollar-sign">$</span>
           <input type="number" step="any" class="expense-cost-input" id="expense-input-${exp.id}" value="${exp.cost}" oninput="updateBillCost('${exp.id}', this.value)" title="Edit monthly cost">
-          <span style="font-size: 11px; color: var(--text-secondary);">/ mo</span>
-          <button class="btn-item-delete" style="padding: 2px 6px;" title="Delete Bill" onclick="deleteBill('${exp.id}')">Delete</button>
+          <span class="expense-per-month">/ mo</span>
+          <button class="btn-item-delete" title="Delete Bill" onclick="deleteBill('${exp.id}')">✕</button>
         </div>
       </div>
       <div class="expense-bar-bg">
         <div class="expense-bar-fill" id="expense-bar-${exp.id}" style="width: ${fundedPct}%; background: ${isFunded ? 'var(--rh-green)' : 'linear-gradient(90deg, var(--pub-purple), var(--pub-blue))'};"></div>
       </div>
       <div class="expense-meta" id="expense-meta-${exp.id}">
-        <span>${isFunded ? `Paid in full by dividends!` : `Remaining to fund: $${Math.max(0, exp.cost - totalMonthly).toFixed(2)}/mo`}</span>
-        <span>Dividends: <strong>$${totalMonthly.toFixed(2)}</strong> / $${exp.cost.toFixed(2)}/mo</span>
+        <span class="expense-meta-status">${isFunded ? `Paid in full by dividends!` : `Remaining: $${Math.max(0, exp.cost - totalMonthly).toFixed(2)}/mo`}</span>
+        <span class="expense-meta-coverage">Dividends: <strong>$${totalMonthly.toFixed(2)}</strong> / $${exp.cost.toFixed(2)}/mo</span>
       </div>
     `;
     container.appendChild(row);
