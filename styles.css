@@ -3300,7 +3300,7 @@ body {
     stroke: #6366f1;
   }
 
-  /* Master Hero HUD Cards - Perfectly 2x2 Grid on Mobile */
+  /* Master Hero HUD Cards - Perfectly Contained 2x2 Grid */
   .portfolio-hero-hud {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
@@ -3317,6 +3317,8 @@ body {
     padding: 10px 8px !important;
     border-radius: 12px !important;
     box-sizing: border-box !important;
+    overflow: hidden !important;
+    word-break: break-word !important;
   }
 
   .hud-card-value {
@@ -3331,7 +3333,7 @@ body {
     font-size: 9px !important;
   }
 
-  /* Vision Arc Cinematic Stage - Fitted for Mobile Screens */
+  /* Vision Arc Cinematic Stage - Cleanly Contained for Mobile */
   .cinematic-hero-stage {
     padding: 16px 12px !important;
     border-radius: 16px !important;
@@ -3364,51 +3366,133 @@ body {
     word-break: break-word !important;
   }
 
-  .stage-description {
+  .stage-main-desc {
     font-size: 12px !important;
     line-height: 1.4 !important;
+    max-width: 100% !important;
+    margin-bottom: 14px !important;
   }
 
-  .stage-spec-row {
+  .stage-specs-grid {
     display: flex !important;
     flex-wrap: wrap !important;
-    gap: 4px !important;
+    gap: 10px 14px !important;
+    padding-top: 10px !important;
+    width: 100% !important;
   }
 
-  .stage-spec-pill {
-    font-size: 9px !important;
-    padding: 3px 6px !important;
+  .stage-spec-item {
+    min-width: 80px !important;
   }
 
-  .stage-media-wrapper {
+  .stage-spec-lbl {
+    font-size: 8px !important;
+  }
+
+  .stage-spec-val {
+    font-size: 11px !important;
+  }
+
+  .stage-media-canvas {
     width: 100% !important;
     max-width: 100% !important;
-    aspect-ratio: 16 / 10 !important;
-    border-radius: 12px !important;
+    height: 190px !important;
+    border-radius: 14px !important;
+    overflow: hidden !important;
   }
 
-  .stage-scrubber {
+  .stage-hud-overlay {
+    padding: 10px !important;
+  }
+
+  .stage-top-pill {
+    font-size: 10px !important;
+    padding: 3px 8px !important;
+  }
+
+  .stage-bottom-hud-row {
     display: flex !important;
-    overflow-x: auto !important;
-    width: 100% !important;
-    max-width: 100% !important;
     gap: 6px !important;
-    padding-bottom: 4px !important;
-    scrollbar-width: none !important;
-    -webkit-overflow-scrolling: touch !important;
+    width: 100% !important;
   }
 
-  .stage-scrubber::-webkit-scrollbar {
-    display: none !important;
+  .stage-hud-stat {
+    padding: 4px 8px !important;
+    border-radius: 6px !important;
+    flex: 1 !important;
+    min-width: 0 !important;
   }
 
-  .stage-step {
-    flex: 0 0 120px !important;
-    min-width: 120px !important;
+  .stage-hud-stat-lbl {
+    font-size: 8px !important;
+  }
+
+  .stage-hud-stat-val {
+    font-size: 12px !important;
+  }
+
+  /* Vision Arc Chapter Scrubber - Stacked & Contained on Mobile */
+  .stage-chapter-scrubber {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    width: 100% !important;
+    margin-top: 14px !important;
+    padding-top: 12px !important;
+  }
+
+  .stage-chapter-tab {
+    width: 100% !important;
+    padding: 8px 10px !important;
+    border-radius: var(--radius-sm) !important;
+    box-sizing: border-box !important;
+  }
+
+  .stage-tab-index {
+    font-size: 11px !important;
+  }
+
+  .stage-tab-title {
+    font-size: 11px !important;
+  }
+
+  .stage-playback-ctrls {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    width: 100% !important;
+    padding-top: 4px !important;
+  }
+
+  .btn-stage-ctrl {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  /* Chips, Badges & Pills Wrapping */
+  .yield-history-selector-chips {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    overflow-x: visible !important;
+    width: 100% !important;
+    padding-bottom: 0 !important;
+  }
+
+  .yield-history-chip {
+    font-size: 11px !important;
+    padding: 5px 10px !important;
+  }
+
+  .yield-history-header-card {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+    padding: 14px !important;
   }
 
   /* All Tables - Responsive Scroll Without Overflow */
-  table, .matrix-table, .yield-calendar-table, .tax-location-table, .form-1099-table, .broker-fee-table, .milestone-table, .table-wrapper {
+  table, .matrix-table, .yield-calendar-table, .tax-location-table, .form-1099-table, .broker-fee-table, .milestone-table, .table-wrapper, .yield-heatmap-table-wrap {
     display: block !important;
     width: 100% !important;
     max-width: 100% !important;
