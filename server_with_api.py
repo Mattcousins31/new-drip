@@ -669,10 +669,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         # Endpoint: Disconnect Brokerage
         if parsed.path == '/api/broker/disconnect':
             try:
-                data = json.loads(post_body)
                 broker_id = data.get('id', '')
-                global LINKED_BROKERS
-                LINKED_BROKERS = [b for b in LINKED_BROKERS if b.get('id') != broker_id]
+                LINKED_BROKERS[:] = [b for b in LINKED_BROKERS if b.get('id') != broker_id]
                 
                 self.send_response(200)
                 self.send_header('Content-Type', 'application/json')
